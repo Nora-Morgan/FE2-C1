@@ -65,7 +65,9 @@ function obtenerUsuario() {
     // Insertar el nombre introducido por el usuario 
     // en el texto del span cuyo id es nombreUsuario (nodo de texto)
 
-    // Para crear un nodo de texto se utiliza createTextNode
+    // Para crear un nodo de texto se puede utilizar
+    // createTextNode: crea un elemento con el que después vamos a hacer algo,
+    // como, por ejemplo, agregarlo a un elemento
     //👇
     let nuevoNodo = document.createTextNode(usuario);
 
@@ -75,8 +77,13 @@ function obtenerUsuario() {
 
     // nombreUsuario.append(document.createTextNode(usuario));
 
-    // Diferencias: 
+    // Diferencias:
+    // textContent: es una propiedad que se puede consultar o setear
+    // por lo que es útil cuando se quiere ingresar el texto de un elemento
+    // que ya existe.
+    //👇
     // nombreUsuario.textContent = usuario.toLowerCase();
+
     // nombreUsuario.innerText = `<div>${usuario}</div>`;
     // nombreUsuario.textContent = `<div>${usuario}</div>`;
     // nombreUsuario.innerHTML = `<div>${usuario}</div>`;
@@ -139,9 +146,8 @@ renderizarAlbumes(albumesFamosos);
 // ----------------------------------------------------------------------------//
 
 
-// Insercion a través de template literals
+// Inserción utilizadndo innerHTML
 //    listado.forEach(album => 
-
 //     covers.innerHTML += `
 //         <li data-id="${album.id}">
 //             <img src="${album.imagen}" alt="${album.nombre}">
@@ -151,14 +157,43 @@ renderizarAlbumes(albumesFamosos);
 //     `
 //    );
 
+
+
 //    if (album.like == true) {
 //         console.log("Favorito");
 //     } else {
 //         console.log("No me gusta");    
 //    }
 
-// //    operador ternario
+//    Lo mismo con un operador ternario:
 //    (album.like == true) ? console.log("Fav") : console.log("No fav");;
+
+
+// Comparación entre createTextNode y textContent en:
+// https://stackoverflow.com/questions/31643204/textnode-or-textcontent
+
+// Comparación entre createElement e innerHTML en:
+// https://stackoverflow.com/questions/2946656/advantages-of-createelement-over-innerhtml
+
+// Comparación entre append y appendChild:
+// (en la documentación de MDN)
+// Element.append() permite añadir también objetos de tipo cadena,
+// mientras que Node.appendChild() sólo acepta objetos de tipo Node.
+// Element.append() no tiene valor de retorno, mientras que Node.appendChild()
+// devuelve el objeto Node añadido.
+// Element.append() puede añadir varios nodos y cadenas de texto,
+// mientras que Node.appendChild() sólo puede añadir un nodo.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
