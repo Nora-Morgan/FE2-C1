@@ -4,6 +4,7 @@
 // 👇 Esta funcion nos devuelve 1, 2 o 3 según la elección del usuario.
 // Hasta que el usuario ingrese un dato válido le seguimos pidiendo que elija.
 
+
 function pedirJugada() {
       // empezamos con la variable eleccion en 0
       let eleccion = 0;
@@ -54,6 +55,7 @@ function pedirJugada() {
   /* -------------------------------------------------------------------------- */
   // 👇 Esta funcion devuelve el resultado de la partida según las elecciones.
   // Comparamos la eleccion de cada uno para saber quien pierde y quien gana.
+
   
   function compararJugadas() {
       const RESULTADOS_POSIBLES = ['¡Genial, ganaste!', 'Esto fue un empate.', 'Una lástima, perdiste.'];
@@ -79,12 +81,9 @@ function pedirJugada() {
       return resultadoRonda;
   }
 
-
-
-
+  const resultadoDePartida = compararJugadas();
+  mostrarResultado(resultadoDePartida);
   
-  const resultadoDePartida = compararJugadas()
-  console.log(resultadoDePartida);
 
   /* -------------------------------------------------------------------------- */
   /*                          CONSIGNA MESA DE TRABAJO                          */
@@ -94,5 +93,13 @@ function pedirJugada() {
   // 3- A su vez debe mostrar al usuario una alerta con el resutado de la partida.
   // 4- Finalmente, si el resultado fue una derrota debe mostrarle al usuario un mensaje de aliento para desearle suerte en la próxima oportunidad.
   
-  
+  function mostrarResultado(resultado){
+    console.log(resultado);
+    if (resultado == 'Una lástima, perdiste.'){
+        alert(resultado + "\nSigue participando, suerte para la próxima.");
+    }
+    else{
+        alert(resultado);
+    }
+  }
   
