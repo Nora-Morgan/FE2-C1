@@ -77,16 +77,6 @@ function obtenerUsuario() {
 
     // nombreUsuario.append(document.createTextNode(usuario));
 
-    // Diferencias:
-    // textContent: es una propiedad que se puede consultar o setear
-    // por lo que es útil cuando se quiere ingresar el texto de un elemento
-    // que ya existe.
-    //👇
-    // nombreUsuario.textContent = usuario.toLowerCase();
-
-    // nombreUsuario.innerText = `<div>${usuario}</div>`;
-    // nombreUsuario.textContent = `<div>${usuario}</div>`;
-    // nombreUsuario.innerHTML = `<div>${usuario}</div>`;
 }
 
 obtenerUsuario();
@@ -101,10 +91,8 @@ function renderizarAlbumes(listado) {
     // Seleccionar el nodo sobre el cual vamos a trabajar
     // En este caso el nodo sobre el cual vamos a insertar etiquetas HTML
     const covers = document.querySelector(".covers");
-    // console.log(covers);
-    
-    // covers.innerHTML = ""
-    // console.log(covers);
+
+    covers.innerHTML = "";
 
     // Crear los elementos a agregar en el DOM en el nodo seleccionado
     // Para cada album:
@@ -141,6 +129,9 @@ function renderizarAlbumes(listado) {
 
 renderizarAlbumes(albumesFamosos);
 
+
+
+
 // ----------------------------------------------------------------------------//
 // -----------------------------   EXTRAS   -----------------------------------//
 // ----------------------------------------------------------------------------//
@@ -159,6 +150,8 @@ renderizarAlbumes(albumesFamosos);
 
 
 
+// Operador ternario:
+
 //    if (album.like == true) {
 //         console.log("Favorito");
 //     } else {
@@ -169,30 +162,67 @@ renderizarAlbumes(albumesFamosos);
 //    (album.like == true) ? console.log("Fav") : console.log("No fav");;
 
 
+//-------------------------------
+// createTextNode vs. textContent
+//-------------------------------
+//👇
+// Si se necesita agregar un texto nuevo al DOM, se puede usar createTextNode para crear un nodo de texto
+// y luego agregarlo al DOM.
+// Si solo se necesita modificar el texto dentro de un elemento existente, se puede usar textContent.
+
 // Comparación entre createTextNode y textContent en:
 // https://stackoverflow.com/questions/31643204/textnode-or-textcontent
+
+
+//-------------------------------
+// innerText vs. textContent
+//-------------------------------
+//👇
+// La elección entre textContent e innerText depende de las necesidades específicas.
+// Si solo necesitas el contenido de texto "visible", innerText puede ser útil,
+// pero si necesitas todo el contenido de texto, incluido el oculto,
+// o si la compatibilidad del navegador es una preocupación, textContent es la opción más segura.
+
+
+
+//----------------------------
+// createElement vs. innerHTML
+//----------------------------
+//👇
+// createElement se utiliza para crear un nuevo elemento HTML y agregarlo al DOM de manera dinámica.
+// innerHTML se utiliza para establecer o recuperar el contenido HTML de un elemento existente en el DOM.
+// El uso de createElement es preferible cuando necesitas crear elementos dinámicamente
+// y no tienes control total sobre su contenido.
+// Por otro lado, innerHTML es útil cuando necesitas establecer el contenido HTML de un elemento
+// y tienes la garantía de que la cadena HTML es segura y confiable.
+// En general, se recomienda tener precaución al utilizar innerHTML para evitar problemas de seguridad.
+// También será importante considerar los controladores de eventos asociados a un elemento.
 
 // Comparación entre createElement e innerHTML en:
 // https://stackoverflow.com/questions/2946656/advantages-of-createelement-over-innerhtml
 
-// Comparación entre append y appendChild:
-// (en la documentación de MDN)
+
+// Ejemplos para probar:
+
+    // nombreUsuario.textContent = usuario.toLowerCase();
+    // nombreUsuario.innerText = `<div>${usuario}</div>`;
+    // nombreUsuario.textContent = `<div>${usuario}</div>`;
+    // nombreUsuario.innerHTML = `<div>${usuario}</div>`;
+
+
+
+//-----------------------
+// append vs. appendChild
+//-----------------------
+//👇
 // Element.append() permite añadir también objetos de tipo cadena,
 // mientras que Node.appendChild() sólo acepta objetos de tipo Node.
 // Element.append() no tiene valor de retorno, mientras que Node.appendChild()
 // devuelve el objeto Node añadido.
 // Element.append() puede añadir varios nodos y cadenas de texto,
-// mientras que Node.appendChild() sólo puede añadir un nodo.
+// mientras que Node.appendChild() solo puede añadir un nodo.
 
-
-
-
-
-
-
-
-
-
+// (fuente: documentación de MDN)
 
 
 
@@ -212,10 +242,55 @@ renderizarAlbumes(albumesFamosos);
 // 3- tener en cuenta: usar las palabra en plural o en singular, según cuando
 // sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos )
 
-
 function mostrarDatosEnPerfil(albumes) {
     // desarrollar la función 👇
-   
-}
+    const cantidadAlbumes = document.getElementById("cant-albums"),
+        cantidadFavoritos = document.querySelector("#cant-favoritos");
 
+    let contadorAlbum = 0,
+        contadorFavoritos = 0;
+
+    albumes.forEach( function(album) {
+    // albumes.forEach( (album) =>{
+        contadorAlbum++
+        // if (album.like == true) {
+        if (album.like) {
+            contadorFavoritos++
+        }
+    })
+
+    console.log(contadorAlbum);
+    console.log(contadorFavoritos);
+
+
+    if (contadorAlbum == 1) {
+        cantidadAlbumes.innerText = contadorAlbum + " álbum"
+    } else {
+        cantidadAlbumes.textContent = `${contadorAlbum} álbumes`
+    }
+    if (contadorFavoritos == 1) {
+        cantidadFavoritos.innerText = contadorFavoritos + " favorito"
+    } else {
+        cantidadFavoritos.textContent = `${contadorFavoritos} favoritos`
+    }
+    
+
+}
 mostrarDatosEnPerfil(albumesFamosos);
+
+
+
+// Otra solución: ¡gracias Carlos!
+// 👇
+//   function mostrarDatosEnPerfil(albumes) {
+//     let cantAlbumes = albumes.length;
+//     let favAlbumes = 0;
+//     albumes.forEach(album =>{
+//         if(album.like){favAlbumes ++;}
+//     })
+//     const cantAlbumesSpan = document.querySelector("#cant-albums");
+//     cantAlbumesSpan.innerText = `${cantAlbumes} álbum${cantAlbumes > 1 ? "es": ""}`
+
+//     const favAlbumesSpan = document.querySelector("#cant-favoritos");
+//     favAlbumesSpan.innerText = `${favAlbumes} favorito${favAlbumes > 1 ? "s" : ""}`
+// }
