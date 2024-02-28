@@ -54,7 +54,7 @@ function marcarFavorito() {
             renderizarAlbumes(albumesFamosos);
             mostrarDatosEnPerfil(albumesFamosos);
 
-            // Recursividad: para agregar nuevamente el listener para seguir escuchado el eveto de los botones
+            // Recursividad: para agregar nuevamente el listener 
             marcarFavorito();
         })
     })
