@@ -110,3 +110,20 @@ function renderizarElementos(listado) {
 // Así evitamos que se vuelva a llamar a la API.
 
 // 4- Solo deben cargarse los primeros 10 comentarios que nos llegan.
+
+
+
+// async function consultaApi(endpoint) {
+//   try {
+//     const res = await fetch(endpoint);
+//     if (!res.ok) {
+//       throw new Error("No se pudo cargar los comentarios");
+//     }
+//     const data = await res.json();
+//     renderizarElementos(data.slice(0, 10));
+//     boton.style.display = "none";
+//   } catch (error) {
+//         console.error(error.message);
+//         alert("Ocurrió un error al cargar los comentarios.");
+//   }
+// }
